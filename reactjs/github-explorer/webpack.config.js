@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 // definindo o modo de desenvolvimento (produção ou teste)
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -21,21 +22,32 @@ module.exports = {
   },
   // pegar o consteúdo estático (HTML)
   devServer: {
-    contentBase: path.resolve(__dirname, 'public')
+    contentBase: path.resolve(__dirname, 'public'),
+    hot: true
   },
   // pega o arquivo bundle.js para executar
   plugins: [
+    // se estiver no modo de Desenvolvimento(Produção), então executa a plugin abaixo
+    isDevelopment && new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html')
     })
-  ],
+  ].filter(Boolean),  //vai remover o true/false
   // como a aplicação vai se comportar quando importar cada tipo de arquivo
   module: {
     rules: [
       {
         test: /\.jsx$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              // se estiver no modo de Desenvolvimento(Produção), então executa a plugin abaixo
+              isDevelopment && require.resolve('react-refresh/babel')
+            ].filter(Boolean) //vai remover o true/false
+          }
+        }
       },
       {
         test: /\.scss$/,
