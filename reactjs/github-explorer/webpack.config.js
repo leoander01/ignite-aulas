@@ -10,7 +10,7 @@ module.exports = {
   // sourcemap
   devtool:isDevelopment ? 'eval-source-map' : 'source-map',
   // buscar com o path o arquivo exato
-  entry: path.resolve(__dirname, 'src', 'index.jsx'),
+  entry: path.resolve(__dirname, 'src', 'index.tsx'),
   // qual é o arquivo que vai com o webpack
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -18,7 +18,7 @@ module.exports = {
   },
   // quais tipos de arquivo ele vai conseguir ler
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   // pegar o consteúdo estático (HTML)
   devServer: {
@@ -37,7 +37,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.(j|t)sx$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
