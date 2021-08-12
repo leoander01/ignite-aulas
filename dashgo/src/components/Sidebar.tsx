@@ -24,7 +24,7 @@ export function Sidebar() {
           <Stack
             spacing="4"
             mt="8"
-            alignString="stretch"
+            alignstring="stretch"
           >
             <Link
               display="flex"
@@ -54,7 +54,7 @@ export function Sidebar() {
           <Stack
             spacing="4"
             mt="8"
-            alignString="stretch"
+            alignstring="stretch"
           >
             <Link
               display="flex"
