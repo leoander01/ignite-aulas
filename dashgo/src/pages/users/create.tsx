@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { Box, Flex, Heading, Divider, VStack, SimpleGrid, HStack, Button  } from '@chakra-ui/react';
 
 import { Header } from '../../components/Header';
@@ -12,7 +14,7 @@ export default function CreateUser() {
       <Flex w="100" my="6" maxWidth={1480} mx="auto" px="6">
         <Sidebar />
 
-        <Box flex="1" borderRadius={8} bg="gray.800" p="8">
+        <Box flex="1" borderRadius={8} bg="gray.800" p={["6", "8"]}>
           <Heading
             size="lg"
             fontWeight="normal"
@@ -27,7 +29,7 @@ export default function CreateUser() {
           >
             <SimpleGrid
               minChildWidth="240px"
-              spacing="8"
+              spacing={["6", "8"]}
               w="100%"
             >
               <Input name="name" label="Nome completo" />
@@ -36,7 +38,7 @@ export default function CreateUser() {
 
             <SimpleGrid
               minChildWidth="240px"
-              spacing="8"
+              spacing={["6", "8"]}
               w="100%"
             >
               <Input name="password" type="password" label="Senha" />
@@ -51,7 +53,9 @@ export default function CreateUser() {
             <HStack 
               spacing="4"
             >
-              <Button colorScheme="whiteAlpha">Cancelar</Button>
+              <Link href="/users" passHref>
+                <Button as="a" colorScheme="whiteAlpha">Cancelar</Button>
+              </Link>
               <Button colorScheme="pink">Salvar</Button>
             </HStack>
           </Flex>
